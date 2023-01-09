@@ -10,7 +10,7 @@
         android:id="@+id/tvList"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="User &amp; Email:"
+        android:text="Name &amp; Email:"
         app:layout_constraintBottom_toTopOf="@+id/btnList"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
