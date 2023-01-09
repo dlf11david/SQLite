@@ -2,10 +2,17 @@ package es.ua.eps.sqlite
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import es.ua.eps.sqlite.databinding.ActivityUserDataBinding
 
 class UserData : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_user_data)
+        val binding = ActivityUserDataBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        with(binding) {
+            btnBack.setOnClickListener {
+                this@UserData.finish()
+            }
+        }
     }
 }
