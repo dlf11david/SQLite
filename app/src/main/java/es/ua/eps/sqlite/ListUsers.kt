@@ -22,6 +22,8 @@ class ListUsers : AppCompatActivity() {
                 } while (cursor.moveToNext())
             }
 
+            cursor.close()
+
             btnList.setOnClickListener {
                 this@ListUsers.finish()
             }

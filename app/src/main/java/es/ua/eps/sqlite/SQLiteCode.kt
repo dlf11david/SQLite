@@ -1,10 +1,11 @@
 package es.ua.eps.sqlite
 
-import android.content.ContentProvider
 import android.content.ContentValues
 import android.database.sqlite.SQLiteOpenHelper
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
+
+var selectedUser = ""
 
 class SQLiteCode(context: Context): SQLiteOpenHelper(
     context, "usuarios.db", null, 1) {

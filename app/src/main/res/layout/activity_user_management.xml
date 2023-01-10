@@ -18,7 +18,8 @@
 
     <Spinner
         android:id="@+id/spUsuario"
-        android:layout_width="409dp"
+        android:layout_margin="40dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@+id/btnNuevo"
         app:layout_constraintEnd_toEndOf="parent"

@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.Toast
 import es.ua.eps.sqlite.databinding.ActivityUserManagementBinding
 
 class UserManagement : AppCompatActivity() {
@@ -23,6 +22,7 @@ class UserManagement : AppCompatActivity() {
                 spinner_data += cursor.getString(0).toString()
             } while (cursor.moveToNext())
         }
+        cursor.close()
         val adapter = ArrayAdapter<String>(
             this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, spinner_data
         )
@@ -34,7 +34,7 @@ class UserManagement : AppCompatActivity() {
                 }
 
                 override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                    Toast.makeText(this@UserManagement, "todo", Toast.LENGTH_SHORT).show()
+                    selectedUser = p0?.getItemAtPosition(p2).toString()
                 }
             }
             btnNuevo.setOnClickListener {
@@ -48,7 +48,8 @@ class UserManagement : AppCompatActivity() {
                 }
             }
             btnEliminar.setOnClickListener {
-                sqlUsers.deleteData("")
+                sqlUsers.deleteData(selectedUser)
+                this@UserManagement.recreate()
             }
             btnLista.setOnClickListener {
                 Intent(this@UserManagement,ListUsers::class.java).also {
@@ -59,5 +60,10 @@ class UserManagement : AppCompatActivity() {
                 this@UserManagement.finish()
             }
         }
+    }
+
+    override fun onRestart() {
+        this.recreate()
+        super.onRestart()
     }
 }
