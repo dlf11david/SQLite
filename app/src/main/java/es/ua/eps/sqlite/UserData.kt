@@ -10,6 +10,8 @@ class UserData : AppCompatActivity() {
         val binding = ActivityUserDataBinding.inflate(layoutInflater)
         setContentView(binding.root)
         with(binding) {
+            tvWelcome.append(": \n"+welcomeName)
+            tvName.append(": \n"+userName)
             btnBack.setOnClickListener {
                 this@UserData.finish()
             }

@@ -8,6 +8,8 @@ import android.widget.Toast
 
 var selectedUser = ""
 var backupCreated = false
+var welcomeName = ""
+var userName = ""
 
 class SQLiteCode(context: Context): SQLiteOpenHelper(
     context, "usuarios.db", null, 1) {
