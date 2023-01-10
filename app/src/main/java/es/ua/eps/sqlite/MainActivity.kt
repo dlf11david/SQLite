@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Toast
 import es.ua.eps.sqlite.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -31,9 +30,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val sqlUsers = SQLiteCode(this)
         when(item.itemId) {
-            R.id.itCreate -> Toast.makeText(this,"Todo",Toast.LENGTH_SHORT).show()
-            R.id.itRestore -> Toast.makeText(this,"Todo",Toast.LENGTH_SHORT).show()
+            R.id.itCreate -> sqlUsers.backTable()
+            R.id.itRestore -> sqlUsers.deleteTable(this)
             R.id.itManage -> Intent(this@MainActivity,UserManagement::class.java).also {
                 startActivity(it)
             }

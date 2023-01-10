@@ -4,8 +4,10 @@ import android.content.ContentValues
 import android.database.sqlite.SQLiteOpenHelper
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
+import android.widget.Toast
 
 var selectedUser = ""
+var backupCreated = false
 
 class SQLiteCode(context: Context): SQLiteOpenHelper(
     context, "usuarios.db", null, 1) {
@@ -24,6 +26,27 @@ class SQLiteCode(context: Context): SQLiteOpenHelper(
         val deleteTable = "DROP TABLE IF EXISTS usuarios"
         db!!.execSQL(deleteTable)
         onCreate(db)
+    }
+
+    fun backTable() {
+        val db = this.writableDatabase
+        val deleteTable = "DROP TABLE IF EXISTS backup"
+        val createBack = "CREATE TABLE backup AS SELECT * FROM usuarios"
+        db!!.execSQL(deleteTable)
+        db.execSQL(createBack)
+        backupCreated = true
+    }
+
+    fun deleteTable(context: Context) {
+        if (backupCreated) {
+            val db = this.writableDatabase
+            val deleteOrder = "DROP TABLE IF EXISTS usuarios"
+            val backOrder = "CREATE TABLE usuarios AS SELECT * FROM backup"
+            db!!.execSQL(deleteOrder)
+            db.execSQL(backOrder)
+        } else {
+            Toast.makeText(context, "You need a backup", Toast.LENGTH_SHORT).show()
+        }
     }
 
     fun addData(nombre_usuario: String, password: String, nombre_completo: String, email: String) {
